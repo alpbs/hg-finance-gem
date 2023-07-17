@@ -62,7 +62,7 @@ module HG
       def to_s separator = ' - '
         to_return = []
 
-        to_return << "#{self.symbol} - #{self.name}"
+        to_return << "#{self.name} - #{self.symbol}"
         to_return << self.price
 
         return to_return.join(separator)
