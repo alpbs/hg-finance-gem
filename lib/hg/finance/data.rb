@@ -16,7 +16,7 @@ module HG
         @request = (use_ssl ? 'https' : 'http') + host_name + '?' + query_params
         @requested_at = Time.now
 
-        request_data = JSON.parse(open(self.request).read)
+        request_data = JSON.parse(URI.open(self.request).read)
 
         if request_data['results']
           results = request_data['results']

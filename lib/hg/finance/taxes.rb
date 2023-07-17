@@ -45,7 +45,7 @@ module HG
       def process_datetime date, time = nil
         return Time.now if date.nil?
 
-        return Time.strptime((date + ' ' + (time ? time : '00:00')), Locale.get_format(:datetime))
+        return Time.parse((date + ' ' + (time ? time : '00:00')), Locale.get_format(:datetime))
       end
     end
 
