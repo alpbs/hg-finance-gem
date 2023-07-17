@@ -3,6 +3,8 @@ require 'json'
 
 require 'hg/finance/version'
 require 'hg/finance/data'
+require 'hg/finance/response'
+require 'hg/finance/stock_price'
 
 module HG
   module Finance
@@ -39,6 +41,15 @@ module HG
 
     def self.get(options = {})
       process({})
+    end
+
+    def self.get_stock_price(options = {})
+      params = defaults.merge(options).delete_if{|k,v| v.nil?}
+      api_host = "#{HOST_NAME}/stock_price"
+
+
+      result = HG::Finance::Response.new(params, api_host, self.use_ssl)
+      return HG::Finance::StockPrice.new(result.response.values.first) if result.present? 
     end
 
     def self.process params
