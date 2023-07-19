@@ -25,11 +25,11 @@ module HG
 
           @taxes = Taxes.new(to_taxes(results['taxes'].first)) if @key_status == :valid
 
-          @currencies = {}
+          @currencies = []
           if results.has_key?('currencies')
             results['currencies'].each do |iso, currency|
               next if iso == 'source'
-              @currencies[iso] = Currency.new(to_currency(currency, iso, results['currencies']['source']))
+              @currencies << Currency.new(to_currency(currency, iso, results['currencies']['source']))
             end
           end
 

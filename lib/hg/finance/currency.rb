@@ -32,22 +32,6 @@ module HG
           @variation = options[:variation].to_f if options[:variation]
         end
       end
-
-      def to_s separator = ' - '
-        to_return = []
-
-        to_return << self.name.to_s + ' (' + self.iso_code.to_s + ')'
-
-        to_return << "#{Locale.get_format(:buy).to_s.capitalize}: " + "#{self.source} #{self.buy}" if self.buy
-        to_return << "#{Locale.get_format(:sell).to_s.capitalize}: " + "#{self.source} #{self.sell}" if self.sell
-        to_return << "#{Locale.get_format(:variation).to_s.capitalize}: " + self.variation.to_s if self.variation
-
-        return to_return.join(separator)
-      end
-
-      def inspect
-        self.to_s
-      end
     end
 
   end
